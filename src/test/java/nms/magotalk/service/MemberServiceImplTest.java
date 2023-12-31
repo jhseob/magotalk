@@ -56,4 +56,18 @@ class MemberServiceImplTest {
 
         assertThat(findMember).isEqualTo(member);
     }
+
+    @DisplayName("이름으로 멤버 조회")
+    @Test
+    void findByName() {
+        Member member = new Member(
+                "1234", "전자제어", 2,
+                1, "memberA", "aa"
+        );
+
+        memberService.join(member);
+        Member findMember = memberService.findMember(member.getMemberName()).get();
+
+        assertThat(findMember).isEqualTo(member);
+    }
 }
