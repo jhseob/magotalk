@@ -42,4 +42,18 @@ class MemberServiceImplTest {
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다");
     }
+
+    @DisplayName("아이디로 멤버 조회")
+    @Test
+    void findById() {
+        Member member = new Member(
+                "1234", "전자제어", 2,
+                1, "memberA", "aa"
+        );
+
+        Long memberId = memberService.join(member);
+        Member findMember = memberService.findMember(memberId).get();
+
+        assertThat(findMember).isEqualTo(member);
+    }
 }
